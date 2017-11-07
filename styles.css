@@ -1,0 +1,27 @@
+#formmake {
+  color: red;
+}
+
+#formmodel {
+  color: red;
+}
+
+#year {
+  color: red;
+}
+
+p {
+  color: black;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+form {
+  margin-top: 14%;
+  width: 50%;
+  background-color: #88b04b;
+  border: thick double blue;
+}
