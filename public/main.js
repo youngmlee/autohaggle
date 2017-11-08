@@ -44,7 +44,7 @@ cars["Toyota"] = new Array("4Runner", "86", "Avalon", "Avalon Hybrid", "Camry", 
 cars["Volkswagen"] = new Array("Atlas", "Beetle", "CC", "e-Golf", "Eos", "Golf", "Golf Alltrack", "Golf GTI", "Golf R", "Golf SportWagen", "Jetta", "Passat", "Tiguan", "Touareg");
 cars["Volvo"] = new Array("S60", "S80", "S90", "V60", "V90", "XC40", "XC60", "XC70", "XC90");
 
-jQuery(document).ready(function($){
+$(document).ready(function(){
 
   $('span.text select').change(function(){
     $(this).siblings('.value').text($(this).find('option[value="'+$(this).val()+'"]').text());
@@ -66,7 +66,45 @@ jQuery(document).ready(function($){
 
   $('#formmake, span.text select').each(function(){
     var def = $(this).siblings('.value').text();
-    $(this).find('option[value='+def+']').attr('selected', 'selected');
-    $(this).change();
+    if (def !== '') {
+      $(this).find('option[value='+def+']').attr('selected', 'selected');
+      $(this).change();
+    }
   });
 });
+
+$('#myform').submit(function(event) {
+  event.preventDefault()
+  const formData = new FormData(event.target)
+  const data = JSON.stringify({
+    email: formData.get('email'),
+    demail: getRecipientsArr([formData.get('demail1'), formData.get('demail2'), formData.get('demail3'), formData.get('demail4'), formData.get('demail5'), formData.get('demail6')]),
+    year: formData.get('year'),
+    make: formData.get('make'),
+    model: formData.get('model'),
+    financing: formData.get('financing'),
+    credit: formData.get('credit'),
+    city: formData.get('city'),
+    details: formData.get('details')
+  })
+  event.target.reset()
+
+  fetch('/autohaggle', {
+    method: 'POST',
+    body: data,
+    headers: { 'content-type': 'application/json'}
+  })
+
+  alert('Form submitted!')
+})
+
+function getRecipientsArr(demail) {
+  let recipientsArr = []
+  for (let i = 0; i < demail.length; i++) {
+    let recipient = demail[i]
+    if (recipient.trim()) {
+      recipientsArr.push(recipient)
+    }
+  }
+  return recipientsArr
+}

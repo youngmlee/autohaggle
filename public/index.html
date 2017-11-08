@@ -9,7 +9,8 @@
 <body>
   <h1>AutoHaggle</h1>
   <h2>Car buying for those of us who hate the hassle of haggle</h2>
-  <form>
+  <p class="intro">Welcome to AutoHaggle, an automated haggling e-mail service designed to make the dealerships compete against each other while you sit at home!<br/>This service aims to solve two problems: Removing the need to haggle in person and preventing your inbox from getting spammed from desperate car salesmen.<br/>To start using AutoHaggle, simply fill out the form below with your information and we will take care of the rest!<br/>An automatic bidding report will be generated and sent to your e-mail once the dealerships quote their prices!</p>
+  <form id="myform" action="autohaggle">
     <div id="main-wrapper">
       <div id="form-wrapper">
         <fieldset>
@@ -26,12 +27,12 @@
               <tr>
                 <td colspan="2">
                   <p>Dealership/Car Salesmen E-mail Addresses</p>
-                  <input name="email" type="text" class="d-email" required placeholder="Enter salesman e-mail" size="26" />
-                  <input name="email" type="text" class="d-email" size="26" />
-                  <input name="email" type="text" class="d-email" size="26" />
-                  <input name="email" type="text" class="d-email" size="26" />
-                  <input name="email" type="text" class="d-email" size="26" />
-                  <input name="email" type="text" class="d-email" size="26" />
+                  <input name="demail1" type="email" class="d-email" required placeholder="Enter salesman e-mail" size="26" />
+                  <input name="demail2" type="email" class="d-email" size="26" />
+                  <input name="demail3" type="email" class="d-email" size="26" />
+                  <input name="demail4" type="email" class="d-email" size="26" />
+                  <input name="demail5" type="email" class="d-email" size="26" />
+                  <input name="demail6" type="email" class="d-email" size="26" />
                 </td>
               </tr>
             </div>
@@ -74,7 +75,7 @@
               <tr>
                 <td colspan="3">
                   <p>Additional Details (Please enter any additional details about the car's trim and/or options to help your dealership give an accurate price quote)</p>
-                  <input name="details" type="text" id="details" size="100" placeholder="The more details the better!" />
+                  <input name="details" type="text" id="details" size="90" placeholder="The more details the better!" />
                 </td>
               </tr>
             </div>
