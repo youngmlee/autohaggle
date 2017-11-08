@@ -2,6 +2,9 @@
   "name": "autohaggle",
   "version": "1.0.0",
   "description": "A web app for potential car buyers who want to automate their haggling process via e-mail.",
+  "engines": {
+    "node": "8.8.0"
+  },
   "main": "main.js",
   "scripts": {
     "start": "node indext.js",
