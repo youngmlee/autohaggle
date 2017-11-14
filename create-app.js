@@ -33,8 +33,8 @@ module.exports = function createApp() {
     console.log('E-mail has been sent!')
   })
 
-  app.post('/email-responses', async (req, res) => {
-    res.json()
+  app.get('/email-responses', async (req, res) => {
+    res.send('Hello, World!')
     console.log("here i am")
   })
 
