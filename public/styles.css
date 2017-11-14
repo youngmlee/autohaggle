@@ -11,3 +11,7 @@ h2,
   border: 2px inset black;
   background-color: #f9feff;
 }
+
+.intro {
+  padding: 20px;
+}
