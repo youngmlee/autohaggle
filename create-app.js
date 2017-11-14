@@ -33,14 +33,9 @@ module.exports = function createApp() {
     console.log('E-mail has been sent!')
   })
 
-  app.get('/email-responses', async (req, res) => {
-    MongoClient.connect(process.env.MONGODB_URI, async (err, db) => {
-      const haggles = ahGateway(db.collection('haggles'))
-      const displayed = await haggles.display()
-      res.json(displayed)
-
-      db.close()
-    })
+  app.post('/email-responses', async (req, res) => {
+    res.json()
+    console.log("here i am")
   })
 
   return app
