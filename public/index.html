@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="styles.css" rel="stylesheet" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -34,7 +33,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12 m3">
+        <div class="input-field col s12 m2">
           <select required name="year" id="year">
             <option value="" disabled selected>Year</option>
             <option value="New">NEW</option>
@@ -44,19 +43,34 @@
           </select>
           <label for="year">Select Vehicle Information</label>
         </div>
-        <div class="input-field col s12 m3">
+        <div class="input-field col s12 m2">
           <select required name="make" id="formmake">
             <option value="" disabled selected>Make</option>
           </select>
         </div>
-        <div class="input-field col s12 m3">
+        <div class="input-field col s12 m2">
           <select required name="model" id="formmodel">
             <option value="" disabled selected>Model</option>
           </select>
         </div>
-        <div class="input-field col s12 m3">
+        <div class="input-field col s12 m4">
           <select required name="trim" id="formtrim">
             <option value="" disabled selected>Trim</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m2">
+          <select required name="color" id="color">
+            <option value="" disabled selected>Color</option>
+            <option value="White">White</option>
+            <option value="Black">Black</option>
+            <option value="Silver">Silver</option>
+            <option value="Gray">Gray</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Brown/Beige">Brown/Beige</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Green">Green</option>
+            <option value="Other">Other (Please specify in Additional Details section)</option>
           </select>
         </div>
       </div>
@@ -92,7 +106,7 @@
     </form>
   </div>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="main.js"></script>
   <script src="cars.js"></script>
 </body>
