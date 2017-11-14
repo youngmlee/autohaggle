@@ -1,108 +1,99 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-  <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
   <link href="styles.css" rel="stylesheet" />
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AutoHaggle</title>
 </head>
 <body>
   <h1>AutoHaggle</h1>
   <h2>Car buying for those of us who hate the hassle of haggle</h2>
   <p class="intro">Welcome to AutoHaggle, an automated haggling e-mail service designed to make the dealerships compete against each other while you sit at home!<br/>This service aims to solve two problems: Removing the need to haggle in person and preventing your inbox from getting spammed from desperate car salesmen.<br/>To start using AutoHaggle, simply fill out the form below with your information and we will take care of the rest!<br/>An automatic bidding report will be generated and sent to your e-mail once the dealerships quote their prices!</p>
-  <form id="myform" action="autohaggle">
-    <div id="main-wrapper">
-      <div id="form-wrapper">
-        <fieldset>
-          <table>
-            <div id="personal-info">
-              <tr>
-                <td colspan="2">
-                  <p>Personal Info</p>
-                  <input name="email" type="text" id="email" required placeholder="Enter Your E-Mail" size="20" />
-                </td>
-              </tr>
-            </div>
-            <div id="dealership-info">
-              <tr>
-                <td colspan="2">
-                  <p>Dealership/Car Salesmen E-mail Addresses</p>
-                  <input name="demail1" type="email" class="d-email" required placeholder="Enter salesman e-mail" size="26" />
-                  <input name="demail2" type="email" class="d-email" size="26" />
-                  <input name="demail3" type="email" class="d-email" size="26" />
-                  <input name="demail4" type="email" class="d-email" size="26" />
-                  <input name="demail5" type="email" class="d-email" size="26" />
-                  <input name="demail6" type="email" class="d-email" size="26" />
-                </td>
-              </tr>
-            </div>
-
-            <div id="vehicle" class="info">
-              <tr>
-                <td colspan="3">
-                  <p>Select Vehicle Information</p>
-                    <select required name="year" id="year">
-                      <option value="" selected="form-year">Year</option>
-                      <option value="new">NEW</option>
-                      <option value="2018">2018</option>
-                      <option value="2017">2017</option>
-                      <option value="2016">2016</option>
-                    </select>
-                    <select required name="make" id="formmake">
-                      <option value="" selected="selected">Make</option>
-                    </select>
-                    <select required name="model" id="formmodel">
-                      <option value="" selected="selected">Model</option>
-                    </select>
-                    <select required name="trim" id="formtrim">
-                      <option value="" selected="selected">Trim</option>
-                    </select>
-                    <select required name="color" id="color">
-                      <option value="" selected="selected"></option>
-                      <option value="white" class="white"></option>
-                      <option value="black" class="black"></option>
-                      <option value="red" class="red"></option>
-                      <option value="blue" class="blue"></option>
-                      <option value="yellow" class="yellow"></option>
-                      <option value="green" class="green"></option>
-                      <option value="beige" class="beige"></option>
-                      <option value="other" class="other">Other</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="3">
-                  <p>Select Financing, Estimation of credit, and city of residence</p>
-                    <select required name="financing" id="financing">
-                      <option value="" selected="selected">Financing</option>
-                      <option value="Cash Buyer">Cash Buyer</option>
-                      <option value="Dealer Financing">Dealer Financing</option>
-                    </select>
-                    <select required name="credit" id="credit">
-                      <option value="" selected="selected">Credit Status</option>
-                      <option value="Good">Good</option>
-                      <option value="Fair">Fair</option>
-                      <option value="Needs Improvement">Needs Improvement</option>
-                      <option value="Unknown">Unknown / Not Applicable</option>
-                    </select>
-                  <input name="city" type="text" id="city" required placeholder="City of residence" />
-                </td>
-              </tr>
-              <tr>
-                <td colspan="3">
-                  <p>Additional Details (Please enter any additional details about the car's trim and/or options to help your dealership give an accurate price quote)</p>
-                  <input name="details" type="text" id="details" size="70" placeholder="The more details the better!" />
-                </td>
-              </tr>
-            </div>
-          </table>
-          <input type="Submit"><input type="Reset">
-        </fieldset>
+  <div class="row">
+    <form class="col s12" id="myform">
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="email" placeholder="Enter your e-mail" id="email" type="email" class="validate"/>
+          <label for="email">Personal Info</label>
+        </div>
       </div>
-    </div>
-  </form>
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="javascript"></script>
+      <label for="demail" class="active">Dealership/Salesman Info</label>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="demail1" placeholder="Enter dealership/salesman e-mail" id="demail" type="email" class="validate" />
+          <input name="demail2" type="email"/>
+          <input name="demail3" type="email"/>
+        </div>
+        <div class="input-field col s6">
+          <input name="demail4" type="email"/>
+          <input name="demail5" type="email"/>
+          <input name="demail6" type="email"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m3">
+          <select required name="year" id="year">
+            <option value="" disabled selected>Year</option>
+            <option value="New">NEW</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+          </select>
+          <label for="year">Select Vehicle Information</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <select required name="make" id="formmake">
+            <option value="" disabled selected>Make</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m3">
+          <select required name="model" id="formmodel">
+            <option value="" disabled selected>Model</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m3">
+          <select required name="trim" id="formtrim">
+            <option value="" disabled selected>Trim</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <select required name="financing" id="financing">
+            <option value="" disabled selected>Financing</option>
+            <option value="Cash Buyer">Cash Buyer</option>
+            <option value="Dealer Financing">Dealer Financing</option>
+          </select>
+          <label for="financing">Select Financing, Estimation of credit, and City of residence</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <select required name="credit" id="credit">
+            <option value="" disabled selected>Credit Status</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+            <option value="Unknown">Unknown / Not Applicable</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m4">
+          <input name="city" type="text" id="city" class="validate" placeholder="City of residence"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea placeholder="The more details the better!" id="details" name="details" class="materialize-textarea"></textarea>
+          <label for="details">Additional Details (Please enter any additional details about the car's trims and/or options/packages to help your dealership give an accurate price quote)</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+    </form>
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
   <script src="main.js"></script>
+  <script src="cars.js"></script>
 </body>
 </html>

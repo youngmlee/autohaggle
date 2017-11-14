@@ -7,9 +7,8 @@
   },
   "main": "main.js",
   "scripts": {
-    "start": "node indext.js",
-    "watch": "nodemon indext.js",
-    "bundle": "browserify indexr.js -t babelify -o bundle.js",
+    "start": "node index.js",
+    "watch": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,7 +38,16 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babelify": "^8.0.0",
     "browserify": "^14.5.0",
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-standard": "^3.0.1",
     "nodemon": "^1.12.1",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
     "watchify": "^3.9.0"
   }
 }
