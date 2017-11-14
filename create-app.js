@@ -33,5 +33,9 @@ module.exports = function createApp() {
     console.log('E-mail has been sent!')
   })
 
+  app.post('/email-responses', (req, res) => {
+    res.send('Hello, World!')
+  })
+
   return app
 }
