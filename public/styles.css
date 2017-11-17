@@ -1,28 +1,17 @@
-#formmake {
-  color: red;
-}
-
-#formmodel {
-  color: red;
-}
-
-#year {
-  color: red;
-}
-
-p {
-  color: black;
-}
-
 h1,
 h2,
 .intro {
   text-align: center;
 }
 
-form {
-  margin-top: 8%;
-  width: 40%;
-  background-color: #88b04b;
-  border: thick double blue;
+#myform {
+  width: 70%;
+  margin-left: 15%;
+  padding: 20px;
+  border: 2px inset black;
+  background-color: #f9feff;
+}
+
+.intro {
+  padding: 20px;
 }
