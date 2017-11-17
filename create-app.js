@@ -9,6 +9,7 @@ const multer = require('multer')()
 
 module.exports = function createApp() {
   const app = express()
+  let userEmail = ''
 
   app.use(express.static(path.join(__dirname, 'public')))
 
@@ -30,11 +31,11 @@ module.exports = function createApp() {
       from: 'inbound@parse.auto-haggle.email',
       subject: 'AutoHaggle Price Inquiry',
       text: 'AutoHaggle Inquiry',
-      html: 'Hello, this is an automated e-mail sent by AutoHaggle! A user on our site has MANUALLY input your e-mail address to request a price quote through AutoHaggle.<br/>With that in mind, we hope you can participate in the AutoHaggle bidding process by giving your best, honest "Out-The-Door" price quote and honoring it when the time comes.<br/><br/>CUSTOMER REQUEST:<br/><br/>I have a potential customer for you interested in a ' + car + '<br/><br/>Additional details:<br/>Financing: ' + req.body.financing + '<br/>Credit estimation: ' + req.body.credit + '<br/>City of residence: ' + req.body.city + '<br/><br/>Additional details: ' + req.body.details + '<br/><br/>If you wish to participate, here are your three response options.<br/><br/>1. If you have or can get the car and can offer a price quote, reply with "OTD:$XX,XXX" (example: OTD:$24,495)<br/><br/>2. If you need additional details before providing a price quote, reply with "NAD: <your message here>" (example: NAD: Do you want the 18 or 20 inch wheels?)<br/><br/>3. If the requested car is not available you can reply with "CNA" (car not available) and leave it at that or offer a price quote on a slightly different but available car. (example: CNA: No white one but I do have a silver one with those exact trims/options. $25,550)'
+      html: 'Hello, this is an automated e-mail sent by AutoHaggle! A user on our site has MANUALLY input your e-mail address to request a price quote through AutoHaggle.<br/>With that in mind, we hope you can participate in the AutoHaggle bidding process by giving your best, honest "Out-The-Door" price quote and honoring it when the time comes.<br/><br/>CUSTOMER REQUEST:<br/><br/>I have a potential customer for you interested in a ' + car + '<br/><br/>Additional details:<br/>Financing: ' + req.body.financing + '<br/>Credit estimation: ' + req.body.credit + '<br/>City of residence: ' + req.body.city + '<br/><br/>Additional details: ' + req.body.details + '<br/><br/>If you wish to participate, here are your three response options. Please start your reply with one (and only one) of these three keywords.<br/><br/>1. OTD - If you have or can get the car and can offer a price quote, reply with "OTD:$XX,XXX" (example: OTD:$24,495)<br/><br/>2. NAD - If you need additional details before providing a price quote, reply with "NAD: <your message here>" (example: NAD: Do you want the 18 or 20 inch wheels?)<br/><br/>3. CNA - If the requested car is not available you can reply with "CNA" (car not available) and leave it at that or offer a price quote on a slightly different but available car. (example: CNA: No white one but I do have a silver one with those exact trims/options. $25,550)'
     };
     sgMail.sendMultiple(msg);
     console.log('Haggle sent!')
-
+    userEmail = req.body.email
     sendReport(req.body.email, req.body.demail, car)
   })
 
@@ -42,23 +43,20 @@ module.exports = function createApp() {
     console.log(isolateEmail(req.body.from))
     console.log(isolateHtml(req.body.html))
     const update = {
-      "reply" : isolateEmail(req.body.from) + " replied with: " + isolateHtml(req.body.html) + '<br/><br/>'
+      "reply" : "<br/><br/>" + isolateEmail(req.body.from) + " replied with: " + isolateHtml(req.body.html)
     }
-    postReply(isolateEmail(req.body.from), update)
+    const updateAnon = {
+      "reply" : "<br/><br/>**AutoHaggle user responded to NAD request with: " + isolateHtml(req.body.html) + "**"
+    }
+    if ((isolateEmail(req.body.from)) === userEmail) {
+      postUserReply(isolateEmail(req.body.from), updateAnon)
+    } else {
+      postReply(isolateEmail(req.body.from), update)
+    }
     res.sendStatus(200)
   })
 
   return app
-}
-
-function retrieveDoc(email) {
-  MongoClient.connect(process.env.MONGODB_URI, async (err, db) => {
-    const haggles = ahGateway(db.collection('haggles'))
-    await haggles
-      .findDoc(email)
-
-    db.close()
-  })
 }
 
 function sendReport(email, demail, carInfo) {
@@ -100,7 +98,7 @@ function sendReport(email, demail, carInfo) {
         from: 'inbound@parse.auto-haggle.email',
         subject: 'Your AutoHaggle Bidding Report (1 of 3)',
         text: 'AutoHaggle Report',
-        html: 'Regarding your ' + carInfo + ', here is a report of the bidding so far: <br/><br/>' + replies.reply + '<br/><br/>Key: (NAD = Need Additional Details), (CNA = Car Not Available)'
+        html: 'Regarding your ' + carInfo + ', here is a report of the bidding so far: <br/><br/>' + replies.reply + '<br/><br/>If additional details are requested (NAD), you can respond by replying here with the same keyword NAD. (Example: NAD: I would like the 20 inch premium wheels.)<br/><br/>Key: (NAD = Need Additional Details), (CNA = Car Not Available)'
       };
       const dReportOne = {
         to: demail,
@@ -122,7 +120,7 @@ function sendReport(email, demail, carInfo) {
         from: 'inbound@parse.auto-haggle.email',
         subject: 'Your AutoHaggle Bidding Report (2 of 3)',
         text: 'AutoHaggle Report',
-        html: 'Regarding your ' + carInfo + ', here is a report of the bidding so far: <br/><br/>' + replies.reply + '<br/><br/>Key: (NAD = Need Additional Details), (CNA = Car Not Available)'
+        html: 'Regarding your ' + carInfo + ', here is a report of the bidding so far: <br/><br/>' + replies.reply + '<br/><br/>If additional details are requested (NAD), you can respond by replying here with the same keyword NAD. (Example: NAD: I would like the 20 inch premium wheels.)<br/><br/>Key: (NAD = Need Additional Details), (CNA = Car Not Available)'
       };
       const dReportTwo = {
         to: demail,
@@ -172,6 +170,16 @@ function postReply(filter, update) {
     const haggles = ahGateway(db.collection('haggles'))
     await haggles
       .updateByEmail(filter, update)
+
+    db.close()
+  })
+}
+
+function postUserReply(filter, update) {
+  MongoClient.connect(process.env.MONGODB_URI, async (err, db) => {
+    const haggles = ahGateway(db.collection('haggles'))
+    await haggles
+      .updateByUserEmail(filter, update)
 
     db.close()
   })
