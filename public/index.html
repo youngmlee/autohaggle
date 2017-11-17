@@ -10,7 +10,7 @@
 <body>
   <h1>AutoHaggle</h1>
   <h2>Car buying for those of us who hate the hassle of haggle</h2>
-  <p class="intro">Welcome to AutoHaggle, an automated haggling e-mail service designed to make the dealerships compete against each other while you sit at home!<br/>This service aims to solve two problems: Removing the need to haggle in person and preventing your inbox from getting spammed from desperate car salesmen.<br/>To start using AutoHaggle, simply fill out the form below with your information and we will take care of the rest!<br/>An automatic bidding report will be generated and sent to your e-mail once the dealerships quote their prices!<br/>Please keep in mind, this is a car buying tool not a research tool.<br/>Make sure you know the exact car you wish to purchase (tip: build your car on the offical website first) to provide the dealerships with specific information which will help in acquiring an accurate price quote.</p>
+  <p class="intro">Welcome to AutoHaggle, an automated haggling e-mail service designed to make the dealerships compete against each other while you sit at home!<br/>This service aims to solve two problems: Removing the need to haggle in person and preventing your inbox from getting spammed from dealerships/car salesmen.<br/><br/>To start using AutoHaggle, simply fill out the form below with your information and we will take care of the rest!<br/>Automatic bidding reports will be generated and sent to your e-mail 24/48/72 hours (3 total reports) from the time of form submission.<br/>Please keep in mind, this is a car buying tool not a research tool. Make sure you know the exact car you wish to purchase (Tip: Build your car on the offical website first)<br/>The more details you can provide, the better in terms of helping the dealerships give an accurate price quote.</p>
   <div class="row">
     <form class="col s12" id="myform">
       <div class="row">
@@ -53,12 +53,12 @@
             <option value="" disabled selected>Model</option>
           </select>
         </div>
-        <div class="input-field col s12 m4">
+        <div class="input-field col s12 m5">
           <select required name="trim" id="formtrim">
             <option value="" disabled selected>Trim</option>
           </select>
         </div>
-        <div class="input-field col s12 m2">
+        <div class="input-field col s12 m1">
           <select required name="color" id="color">
             <option value="" disabled selected>Color</option>
             <option value="White">White</option>
@@ -81,7 +81,7 @@
             <option value="Cash Buyer">Cash Buyer</option>
             <option value="Dealer Financing">Dealer Financing</option>
           </select>
-          <label for="financing">Select Financing, Estimation of credit, and City of residence</label>
+          <label for="financing">Select Financing, Credit, and City</label>
         </div>
         <div class="input-field col s12 m4">
           <select required name="credit" id="credit">
@@ -105,7 +105,7 @@
       <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
     </form>
   </div>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="main.js"></script>
   <script src="cars.js"></script>
