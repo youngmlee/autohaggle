@@ -9,6 +9,10 @@ module.exports = function ahGateway(collection) {
       const updated = await collection.update({ demail }, { $push: updates })
       return updated
     },
+    async updateByUserEmail(email, updates) {
+      const updated = await collection.update({ email }, { $push: updates })
+      return updated
+    },
     async deleteDoc(email) {
       const deleted = await collection.deleteOne( { email } )
     },
