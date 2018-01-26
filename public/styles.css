@@ -6,7 +6,7 @@ h4,
 
 h1,
 h4 {
-  font-family: 'Racing Sans One';
+  font-family: 'Racing Sans One', sans-serif;
 }
 
 #myform {
@@ -14,7 +14,7 @@ h4 {
   margin-left: 15%;
   padding: 20px;
   border: 2px inset black;
-  background-color: #f9feff;
+  background-color: #a2ecff;
 }
 
 .intro {
