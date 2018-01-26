@@ -34,14 +34,14 @@ module.exports = function createApp() {
       html: 'Hello, this is an automated e-mail sent by AutoHaggle! A user on our site has MANUALLY input your e-mail address to request a price quote through AutoHaggle.<br/>With that in mind, we hope you can participate in the AutoHaggle bidding process by giving your best, honest "Out-The-Door" price quote and honoring it when the time comes.<br/><br/>CUSTOMER REQUEST:<br/><br/>I have a potential customer for you interested in a ' + car + '<br/><br/>Additional details:<br/>Financing: ' + req.body.financing + '<br/>Credit estimation: ' + req.body.credit + '<br/>City of residence: ' + req.body.city + '<br/><br/>Additional details: ' + req.body.details + '<br/><br/>If you wish to participate, here are your three response options. Please start your reply with one (and only one) of these three keywords.<br/><br/>1. OTD - If you have or can get the car and can offer a price quote, reply with "OTD:$XX,XXX" (example: OTD:$24,495)<br/><br/>2. NAD - If you need additional details before providing a price quote, reply with "NAD: <your message here>" (example: NAD: Do you want the 18 or 20 inch wheels?)<br/><br/>3. CNA - If the requested car is not available you can reply with "CNA" (car not available) and leave it at that or offer a price quote on a slightly different but available car. (example: CNA: No white one but I do have a silver one with those exact trims/options. $25,550)'
     };
     sgMail.sendMultiple(msg);
-    console.log('Haggle sent!')
+    //console.log('Haggle sent!')//
     userEmail = req.body.email
     sendReport(req.body.email, req.body.demail, car)
   })
 
   app.post('/email-responses', multer.none(), (req, res) => {
-    console.log(isolateEmail(req.body.from))
-    console.log(isolateHtml(req.body.html))
+    //console.log(isolateEmail(req.body.from))//
+    //console.log(isolateHtml(req.body.html))//
     const update = {
       "reply" : "<br/><br/>" + isolateEmail(req.body.from) + " replied with: " + isolateHtml(req.body.html)
     }
@@ -67,7 +67,7 @@ function sendReport(email, demail, carInfo) {
       const found = await haggles.findDoc(email)
       replies = found
       db.close()
-      console.log('Report one fetched!')
+      //console.log('Report one fetched!')//
     })
   }, process.env.FETCH_ONE)
 
@@ -77,7 +77,7 @@ function sendReport(email, demail, carInfo) {
       const found = await haggles.findDoc(email)
       replies = found
       db.close()
-      console.log('Report two fetched!')
+      //console.log('Report two fetched!')//
     })
   }, process.env.FETCH_TWO)
 
@@ -87,7 +87,7 @@ function sendReport(email, demail, carInfo) {
       const found = await haggles.findDoc(email)
       replies = found
       db.close()
-      console.log('Report three fetched!')
+      //console.log('Report three fetched!')//
     })
   }, process.env.FETCH_THREE)
 
@@ -109,7 +109,7 @@ function sendReport(email, demail, carInfo) {
       }
       sgMail.send(reportOne)
       sgMail.sendMultiple(dReportOne)
-      console.log('Report one sent!')
+      //console.log('Report one sent!')//
     }
   }, process.env.REPORT_ONE) // 24hr = 86400000 ms; 48=172800000; 72=259200000 //
 
@@ -131,7 +131,7 @@ function sendReport(email, demail, carInfo) {
       }
       sgMail.send(reportTwo)
       sgMail.sendMultiple(dReportTwo)
-      console.log('Report two sent!')
+      //console.log('Report two sent!')//
     }
   }, process.env.REPORT_TWO)
 
@@ -153,7 +153,7 @@ function sendReport(email, demail, carInfo) {
       }
       sgMail.send(reportThree)
       sgMail.sendMultiple(dReportThree)
-      console.log('Report three sent!')
+      //console.log('Report three sent!')//
       MongoClient.connect(process.env.MONGODB_URI, async (err, db) => {
         const haggles = ahGateway(db.collection('haggles'))
         await haggles
